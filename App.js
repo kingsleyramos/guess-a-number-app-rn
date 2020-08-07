@@ -20,8 +20,6 @@ export default function App(props) {
     const [guessRounds, setGuessRounds] = useState(0)
     const [dataLoaded, setDataLoaded] = useState(false)
 
-    console.log(dataLoaded)
-
     if (!dataLoaded) {
         return (
         <AppLoading 
