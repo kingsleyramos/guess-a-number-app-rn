@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View, Button, Image } from 'react-native'
 import DefaultStyles from '../constants/default-styles'
 import BodyText from '../components/BodyText'
+import MainButton from '../components/MainButton'
 
 import Colors from '../constants/colors'
 
@@ -23,7 +24,7 @@ const GameOverScreen = (props) => {
                     </BodyText>
                 </View>
 
-            <Button title='New Game' onPress={props.onRestart}></Button>
+            <MainButton onPress={props.onRestart}>New Game</MainButton>
         </View>
     )
 }
