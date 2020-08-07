@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Button, Keyboard, Alert } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Button, Keyboard, Alert, Dimensions } from 'react-native'
 
 import Card from '../components/Card'
 import Colors from '../constants/colors'
@@ -94,8 +94,10 @@ const styles = StyleSheet.create({
         fontFamily: 'open-sans-bold'
     },
     inputContainer: {
-        width: 300,
-        maxWidth: '80%',
+        width: '80%',
+        //maxWidth: '80%',
+        maxWidth: '95%',
+        minWidth: 300,
         alignItems: 'center',
     },
     buttonContainer: {
@@ -105,7 +107,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
     },
     button: {
-        width: 100
+        // width: 100
+        width: Dimensions.get('window').width / 4 // for finding out how many pixels you have available on the width and on the height
+        //width: '40%' //  percentage here always refers to the direct parent view and not always to the available width of the device
     },
     input: {
         width: 50,
