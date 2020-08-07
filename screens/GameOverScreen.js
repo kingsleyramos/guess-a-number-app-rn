@@ -1,7 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Image } from 'react-native'
 import DefaultStyles from '../constants/default-styles'
+import BodyText from '../components/BodyText'
 
+import Colors from '../constants/colors'
 
 const GameOverScreen = (props) => {
     return (
@@ -15,8 +17,12 @@ const GameOverScreen = (props) => {
                     // Network images MUST be resized directly, not from the parent
                     resizeMode='cover' />
             </View>
-            <Text style={DefaultStyles.bodyText}>Number of Rounds: {props.roundsNumber}</Text>
-            <Text style={DefaultStyles.bodyText}>Number was: {props.userNumber}</Text>
+                <View style={styles.resultContainer}>
+                    <BodyText style={styles.resultText}>
+                        Your phone needed <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to guess the number <Text style={styles.highlight}>{props.userNumber}</Text>
+                    </BodyText>
+                </View>
+
             <Button title='New Game' onPress={props.onRestart}></Button>
         </View>
     )
@@ -42,5 +48,17 @@ const styles = StyleSheet.create({
         height: 300,
         overflow: 'hidden',
         margin: 30
+    },
+    highlight: {
+        color: Colors.primary,
+        fontFamily: 'open-sans-bold'
+    },
+    resultContainer: {
+        marginHorizontal: 30,
+        marginBottom: 20
+    },
+    resultText: {
+        textAlign: 'center',
+        fontSize: 20
     }
 })
