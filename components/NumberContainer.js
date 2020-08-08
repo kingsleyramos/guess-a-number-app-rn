@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import Colors from "../constants/colors";
@@ -5,7 +6,7 @@ import Colors from "../constants/colors";
 const NumberContainer = (props) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.number}> {props.children} </Text>{" "}
+            <Text style={styles.number}> {props.children} </Text>
         </View>
     );
 };
