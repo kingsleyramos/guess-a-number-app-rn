@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, View, Button, Image, Dimensions, ScrollView } from 'react-native'
 import DefaultStyles from '../constants/default-styles'
 import BodyText from '../components/BodyText'
@@ -7,11 +7,33 @@ import MainButton from '../components/MainButton'
 import Colors from '../constants/colors'
 
 const GameOverScreen = (props) => {
+
+    const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width)
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height)
+
+    useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceWidth(Dimensions.get('window').width);
+            setAvailableDeviceHeight(Dimensions.get('window').height);
+        };
+
+        Dimensions.addEventListener('change', updateLayout)
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout)
+        };
+    });
+
     return (
         <ScrollView>
         <View style={ styles.screen}>
             <Text style={DefaultStyles.title}>Game is Over!</Text>
-            <View style={styles.imageContainer}>
+            <View style={{...styles.imageContainer, 
+                width: availableDeviceWidth * 0.6, 
+                height: availableDeviceWidth * 0.6,
+                borderRadius: availableDeviceWidth * 0.6 / 2,
+                marginVertical: availableDeviceHeight / 30 
+                }}>
                 <Image
                     style={styles.image} 
                     //source={require('../assets/success.png')}
@@ -37,20 +59,17 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 10
     },
     image: {
         width: '100%',
         height: '100%'
     },
     imageContainer: {
-        borderRadius: Dimensions.get('window').width * 0.7 / 2,
         borderWidth: 3,
         borderColor: 'black',
-        width: Dimensions.get('window').width * 0.7,
-        height: Dimensions.get('window').width * 0.7,
         overflow: 'hidden',
-        marginVertical: Dimensions.get('window').height / 30 
     },
     resultContainer: {
         marginHorizontal: 30,
