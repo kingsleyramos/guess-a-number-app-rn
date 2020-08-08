@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import {StyleSheet, Text, View, Platform} from "react-native";
 
