@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { 
     StyleSheet, 
     Text, 
@@ -24,6 +24,7 @@ const StartGameScreen = (props) => {
     const [enteredValue, setEnteredValue] = useState('')
     const [confirmed, setConfirmed] = useState(false)
     const [selectedNumber, setSelectedNumber] = useState()
+    const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4)
 
     const numberInputHandler = (inputText) => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -33,6 +34,23 @@ const StartGameScreen = (props) => {
         setEnteredValue('')
         setConfirmed(false)
     }
+
+    // This will run at every render, every time the screen is rotated
+    useEffect(() => {
+        // This will update the dimensions every time the device is rotated / if the width changes.
+        const updateLayout = () => {
+            setButtonWidth(Dimensions.get('window').width / 4)
+        }
+
+        //Listener if the user rotates the device
+        Dimensions.addEventListener('change', updateLayout)
+
+        // Cleaner, deletes the eventlister so a new one will be created after render
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout)
+        }
+    
+    })
 
     const confirmInputHandler = () => {
         // these all all activate at the same time.
@@ -80,10 +98,10 @@ const StartGameScreen = (props) => {
                                 value={enteredValue}
                             />
                             <View style={styles.buttonContainer}>
-                                <View style={styles.button}>
+                                <View style={{width: buttonWidth}}>
                                     <Button title='Reset' onPress={resetInputHandler} color={Colors.accent}/>
                                 </View>
-                                <View style={styles.button}>
+                                <View style={{width: buttonWidth}}>
                                     <Button title='Confirm' onPress={confirmInputHandler} color={Colors.primary}/>
                                 </View>
                             </View>
@@ -122,11 +140,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 15,
     },
-    button: {
-        // width: 100
-        width: Dimensions.get('window').width / 4 // for finding out how many pixels you have available on the width and on the height
-        //width: '40%' //  percentage here always refers to the direct parent view and not always to the available width of the device
-    },
+    // button: {
+    //     // width: 100
+    //     width: Dimensions.get('window').width / 4 // for finding out how many pixels you have available on the width and on the height
+    //     //width: '40%' //  percentage here always refers to the direct parent view and not always to the available width of the device
+    // },
     input: {
         width: 50,
         textAlign: 'center'
