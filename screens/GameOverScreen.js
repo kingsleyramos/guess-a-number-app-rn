@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button, Image } from 'react-native'
+import { StyleSheet, Text, View, Button, Image, Dimensions, ScrollView } from 'react-native'
 import DefaultStyles from '../constants/default-styles'
 import BodyText from '../components/BodyText'
 import MainButton from '../components/MainButton'
@@ -8,6 +8,7 @@ import Colors from '../constants/colors'
 
 const GameOverScreen = (props) => {
     return (
+        <ScrollView>
         <View style={ styles.screen}>
             <Text style={DefaultStyles.title}>Game is Over!</Text>
             <View style={styles.imageContainer}>
@@ -26,6 +27,7 @@ const GameOverScreen = (props) => {
 
             <MainButton onPress={props.onRestart}>New Game</MainButton>
         </View>
+        </ScrollView>
     )
 }
 
@@ -42,24 +44,24 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     imageContainer: {
-        borderRadius: 150,
+        borderRadius: Dimensions.get('window').width * 0.7 / 2,
         borderWidth: 3,
         borderColor: 'black',
-        width: 300,
-        height: 300,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
         overflow: 'hidden',
-        margin: 30
+        marginVertical: Dimensions.get('window').height / 30 
+    },
+    resultContainer: {
+        marginHorizontal: 30,
+        marginVertical: Dimensions.get('window').height / 60 
+    },
+    resultText: {
+        textAlign: 'center',
+        fontSize: Dimensions.get('window').height < 400 ? 16 : 20  
     },
     highlight: {
         color: Colors.primary,
         fontFamily: 'open-sans-bold'
     },
-    resultContainer: {
-        marginHorizontal: 30,
-        marginBottom: 20
-    },
-    resultText: {
-        textAlign: 'center',
-        fontSize: 20
-    }
 })
