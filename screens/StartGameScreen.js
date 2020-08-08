@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, {useState, useEffect} from "react";
 import {
     StyleSheet,
@@ -50,11 +51,11 @@ const StartGameScreen = (props) => {
         //Listener if the user rotates the device
         Dimensions.addEventListener("change", updateLayout);
 
-        // Cleaner, deletes the eventlister so a new one will be created after render
+        // Cleaner, deletes the eventLister so a new one will be created after render
         return () => {
             Dimensions.removeEventListener("change", updateLayout);
         };
-    });
+    }, [Dimensions]);
 
     const confirmInputHandler = () => {
         // these all all activate at the same time.
@@ -84,7 +85,7 @@ const StartGameScreen = (props) => {
     if (confirmed) {
         confirmedOutput = (
             <Card style={styles.summaryContainer}>
-                <Text> Chosen Number: </Text>
+                <Text>Chosen Number:</Text>
                 <NumberContainer> {selectedNumber} </NumberContainer>
                 <MainButton onPress={() => props.onStartGame(selectedNumber)}>
                     START GAME
