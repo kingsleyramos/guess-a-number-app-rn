@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import React, {useState, useRef, useEffect} from "react";
 import {
@@ -87,7 +88,7 @@ const GameScreen = (props) => {
             (direction == "lower" && currentGuess < props.userChoice) ||
             (direction == "greater" && currentGuess > props.userChoice)
         ) {
-            Alert.alert("Dont't lie", "You know this is wrong...", [
+            Alert.alert("Don't lie", "You know this is wrong...", [
                 {
                     text: "sorry!",
                     style: "cancel",
