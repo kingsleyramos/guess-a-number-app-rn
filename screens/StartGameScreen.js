@@ -1,5 +1,16 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Button, Keyboard, Alert, Dimensions } from 'react-native'
+import { 
+    StyleSheet, 
+    Text, 
+    View, 
+    TouchableWithoutFeedback, 
+    Button, 
+    Keyboard, 
+    Alert, 
+    Dimensions, 
+    ScrollView,
+    KeyboardAvoidingView
+} from 'react-native'
 
 import Card from '../components/Card'
 import Colors from '../constants/colors'
@@ -49,34 +60,39 @@ const StartGameScreen = (props) => {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            Keyboard.dismiss() // This will dismiss the keyboard if tapped elsewhere on the screen
-        }}>
-            <View style={styles.screen}>
-                <TitleText style={styles.title}>Start New Game!</TitleText>
-                <Card style={styles.inputContainer}>
-                    <BodyText>Select a Number</BodyText>
-                    <Input style={styles.input} 
-                        blurOnSubmit 
-                        autoCapitalize='none' 
-                        autoCorrect={false} 
-                        keyboardType='number-pad' 
-                        maxLength={2}
-                        onChangeText={numberInputHandler}
-                        value={enteredValue}
-                    />
-                    <View style={styles.buttonContainer}>
-                        <View style={styles.button}>
-                            <Button title='Reset' onPress={resetInputHandler} color={Colors.accent}/>
-                        </View>
-                        <View style={styles.button}>
-                            <Button title='Confirm' onPress={confirmInputHandler} color={Colors.primary}/>
-                        </View>
+        <ScrollView>
+            <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={30}>
+                {/* behavior="position" best of iOS, behavior="padding best on Android" */}
+                <TouchableWithoutFeedback onPress={() => {
+                    Keyboard.dismiss() // This will dismiss the keyboard if tapped elsewhere on the screen
+                }}>
+                    <View style={styles.screen}>
+                        <TitleText style={styles.title}>Start New Game!</TitleText>
+                        <Card style={styles.inputContainer}>
+                            <BodyText>Select a Number</BodyText>
+                            <Input style={styles.input} 
+                                blurOnSubmit 
+                                autoCapitalize='none' 
+                                autoCorrect={false} 
+                                keyboardType='number-pad' 
+                                maxLength={2}
+                                onChangeText={numberInputHandler}
+                                value={enteredValue}
+                            />
+                            <View style={styles.buttonContainer}>
+                                <View style={styles.button}>
+                                    <Button title='Reset' onPress={resetInputHandler} color={Colors.accent}/>
+                                </View>
+                                <View style={styles.button}>
+                                    <Button title='Confirm' onPress={confirmInputHandler} color={Colors.primary}/>
+                                </View>
+                            </View>
+                        </Card>
+                        {confirmedOutput}
                     </View>
-                </Card>
-                {confirmedOutput}
-            </View>
-        </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
+        </ScrollView>
     )
 }
 
