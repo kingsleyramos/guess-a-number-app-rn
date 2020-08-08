@@ -1,7 +1,13 @@
-import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import React from "react";
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    TouchableNativeFeedback,
+} from "react-native";
 
-import Colors from '../constants/colors'
+import Colors from "../constants/colors";
 
 const MainButton = (props) => {
     return (
@@ -10,21 +16,21 @@ const MainButton = (props) => {
                 <Text style={styles.buttonText}>{props.children}</Text>
             </View>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
-export default MainButton
+export default MainButton;
 
 const styles = StyleSheet.create({
-    button:{
+    button: {
         backgroundColor: Colors.primary,
         paddingVertical: 12,
         paddingHorizontal: 30,
-        borderRadius: 25
+        borderRadius: 25,
     },
-    buttonText:{
-        color: 'white',
-        fontFamily: 'open-sans',
-        fontSize: 18
-    }
-})
+    buttonText: {
+        color: "white",
+        fontFamily: "open-sans",
+        fontSize: 18,
+    },
+});

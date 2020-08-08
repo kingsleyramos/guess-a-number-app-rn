@@ -8,6 +8,7 @@ import {
     FlatList, 
     Dimensions
 } from 'react-native'
+//import * as ScreenOrientation from 'expo-screen-orientation'
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card'
@@ -44,6 +45,9 @@ const renderListItem = (listLength, itemData) => (
 )
 
 const GameScreen = (props) => {
+
+    //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
+
     const initialGuess = generateRandomBetween(1,100, props.userChoice)
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     //const [pastGuesses, setPastGuesses] = useState([initialGuess]) // for ScrollView
@@ -188,7 +192,7 @@ const styles = StyleSheet.create({
         width: '80%'
       },
     list:{
-        flexGrow: 1, // more flexable that flex for lists
+        flexGrow: 1, // more flexible that flex for lists
         // alignItems: 'center',
         justifyContent: 'flex-end'
     },
