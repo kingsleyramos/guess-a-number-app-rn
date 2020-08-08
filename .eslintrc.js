@@ -1,29 +1,22 @@
-/* eslint-disable no-tabs */
-module.exports = {
-    env: {
-        browser: true,
-        es2020: true,
+export default {
+    "env": {
+        "browser": true,
+        "es2020": true
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
         },
-        ecmaVersion: 11,
-        sourceType: 'module',
+        "ecmaVersion": 11,
+        "sourceType": "module"
     },
-    plugins: [
-        'react',
-        'prettier',
+    "plugins": [
+        "react"
     ],
-    rules: {
-        indent: ['error', 'tab'],
-        'react/jsx-filename-extension': [1, {
-            extensions: ['.js', '.jsx']
-        }],
-    },
+    "rules": {
+    }
 };
